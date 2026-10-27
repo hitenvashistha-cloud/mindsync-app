@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MindSync — Mental Wellness Analytics</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+
+<div class="bg-gradient"></div>
+
+<!-- ONBOARDING SCREEN -->
+<div class="onboarding" id="onboarding">
+  <div class="onboarding-card">
+    <div class="logo-icon-large">M</div>
+    <h2>Welcome to MindSync</h2>
+    <p>Let's personalize your wellness dashboard.</p>
+    <form id="name-form">
+      <input type="text" id="user-name-input" placeholder="Enter your first name" required autocomplete="off" />
+      <button type="submit">Continue</button>
+    </form>
+  </div>
+</div>
+
+<div class="dashboard-wrapper" id="dashboard-wrapper" style="display: none;">
+
+  <!-- TOP NAV -->
+  <header class="top-nav">
+    <div class="logo">
+      <div class="logo-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+      </div>
+      <span>MindSync</span>
+    </div>
+    <div class="nav-status">
+      <span class="status-dot green"></span> Model Online
+    </div>
+  </header>
+
+  <main class="dashboard-content">
+    
+    <!-- LEFT COLUMN: FORM -->
+    <div class="col-left">
+      
+      <div class="greeting-section">
+        <h1>Hello, <span id="greeting-name">Student</span> 👋</h1>
+        <p>Fill out your daily check-in to generate your score.</p>
+      </div>
+
+      <div class="card form-card">
+        <div class="card-header">
+          <h2>Daily Check-in</h2>
+          <span class="badge">Required</span>
+        </div>
+        
+        <form id="predict-form" novalidate>
+          
+          <div class="form-section-title">Profile</div>
+          <div class="form-grid">
+            <div class="field">
+              <label for="age">Age</label>
+              <input type="number" id="age" name="age" min="10" max="100" required placeholder="e.g. 21" />
+              <span class="error-msg"></span>
+            </div>
+            <div class="field">
+              <label for="gender">Gender</label>
+              <select id="gender" name="gender" required>
+                <option value="" disabled selected>Select</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+              </select>
+              <span class="error-msg"></span>
+            </div>
+            <div class="field">
+              <label for="country">Country</label>
+              <input type="text" id="country" name="country" required placeholder="e.g. India" />
+              <span class="error-msg"></span>
+            </div>
+            <div class="field">
+              <label for="academic_level">Academic Level</label>
+              <select id="academic_level" name="academic_level" required>
+                <option value="" disabled selected>Select</option>
+                <option value="High School">High School</option>
+                <option value="Undergraduate">Undergraduate</option>
+                <option value="Graduate">Graduate</option>
+              </select>
+              <span class="error-msg"></span>
+            </div>
+          </div>
+
+          <div class="form-section-title">Digital Habits</div>
+          <div class="form-grid">
+            <div class="field">
+              <label for="most_used_platform">Most Used Platform</label>
+              <select id="most_used_platform" name="most_used_platform" required>
+                <option value="" disabled selected>Select</option>
+                <option value="Facebook">Facebook</option>
+                <option value="Instagram">Instagram</option>
+                <option value="Snapchat">Snapchat</option>
+                <option value="Twitter">Twitter</option>
+                <option value="YouTube">YouTube</option>
+                <option value="TikTok">TikTok</option>
+                <option value="LinkedIn">LinkedIn</option>
+                <option value="WhatsApp">WhatsApp</option>
+              </select>
+              <span class="error-msg"></span>
+            </div>
+            <div class="field">
+              <label for="purpose_of_use">Primary Purpose</label>
+              <select id="purpose_of_use" name="purpose_of_use" required>
+                <option value="" disabled selected>Select</option>
+                <option value="Networking">Networking</option>
+                <option value="Education">Education</option>
+                <option value="Entertainment">Entertainment</option>
+                <option value="News">News</option>
+              </select>
+              <span class="error-msg"></span>
+            </div>
+            <div class="field">
+              <label for="avg_daily_usage_hours">Screen Time (hrs)</label>
+              <input type="number" id="avg_daily_usage_hours" name="avg_daily_usage_hours" min="0" max="18" step="0.1" required placeholder="0.0" />
+              <span class="error-msg"></span>
+            </div>
+            <div class="field">
+              <label for="daily_unlocks">Daily Unlocks</label>
+              <input type="number" id="daily_unlocks" name="daily_unlocks" min="0" step="1" required placeholder="e.g. 60" />
+              <span class="error-msg"></span>
+            </div>
+          </div>
+
+          <div class="form-section-title">Lifestyle</div>
+          <div class="form-grid grid-3">
+            <div class="field">
+              <label for="study_hours">Study (hrs)</label>
+              <input type="number" id="study_hours" name="study_hours" min="0" max="16" step="0.1" required placeholder="0.0" />
+              <span class="error-msg"></span>
+            </div>
+            <div class="field">
+              <label for="physical_activity_hours">Exercise (hrs)</label>
+              <input type="number" id="physical_activity_hours" name="physical_activity_hours" min="0" max="8" step="0.1" required placeholder="0.0" />
+              <span class="error-msg"></span>
+            </div>
+            <div class="field">
+              <label for="sleep_hours_per_night">Sleep (hrs)</label>
+              <input type="number" id="sleep_hours_per_night" name="sleep_hours_per_night" min="3" max="14" step="0.1" required placeholder="0.0" />
+              <span class="error-msg"></span>
+            </div>
+          </div>
+
+          <!-- Live Total Hours Warning -->
+          <div class="field field-span" style="margin-top: 4px;">
+            <span id="total-hours-warning" style="font-size: 12px; color: var(--text-muted); font-weight: 500;">
+              Total daily hours logged: <span id="total-hours-val">0</span> / 24
+            </span>
+          </div>
+
+          <div class="field field-span" style="margin-top: 12px;">
+            <label>Perceived Stress Level</label>
+            <div class="segmented" id="stress_level_group" role="radiogroup">
+              <button type="button" class="seg-btn" data-value="Low" role="radio" aria-checked="false">Low</button>
+              <button type="button" class="seg-btn" data-value="Medium" role="radio" aria-checked="false">Medium</button>
+              <button type="button" class="seg-btn" data-value="High" role="radio" aria-checked="false">High</button>
+              <button type="button" class="seg-btn" data-value="Very High" role="radio" aria-checked="false">Very High</button>
+            </div>
+            <input type="hidden" id="stress_level" name="stress_level" />
+            <span class="error-msg"></span>
+          </div>
+
+          <button type="submit" class="submit-btn" id="submit-btn">
+            <span class="btn-label">Generate Score</span>
+            <span class="spinner" aria-hidden="true"></span>
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- RIGHT COLUMN: REAL RESULTS -->
+    <div class="col-right">
+      
+      <div class="stat-row">
+        <div class="stat-card">
+          <div class="stat-header">
+            <span>Reported Stress</span>
+            <span class="status-dot green"></span>
+          </div>
+          <div class="stat-value" id="stat-stress">--</div>
+          <div class="stat-desc">Based on your input</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-header">
+            <span>Daily Focus</span>
+            <span class="status-dot blue"></span>
+          </div>
+          <div class="stat-value" id="stat-focus">-- <span class="unit">hrs</span></div>
+          <div class="stat-desc">Study time</div>
+        </div>
+      </div>
+
+      <div class="card score-card" id="score-card">
+        <div class="card-header">
+          <h2>Your MindSync Score</h2>
+          <div class="timer" id="score-status">Pending</div>
+        </div>
+        
+        <div class="score-body idle" id="score-idle">
+          <div class="score-placeholder">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#8A8A9E" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+            <p>Submit the form to generate your real-time mental health score.</p>
+          </div>
+        </div>
+
+        <div class="score-body result" id="score-result" hidden>
+          <div class="gauge-container">
+            <svg class="gauge" viewBox="0 0 200 120">
+              <path class="gauge-bg" d="M 20 100 A 80 80 0 0 1 180 100" />
+              <path class="gauge-fill" id="gauge-fill" d="M 20 100 A 80 80 0 0 1 180 100" />
+            </svg>
+            <div class="gauge-text">
+              <span class="score-number" id="score-number">0.0</span>
+              <span class="score-max">/10</span>
+            </div>
+          </div>
+          <div class="score-band" id="score-band">—</div>
+          <div class="score-context" id="score-context"></div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<div class="sr-only" id="status-announcer" role="status" aria-live="polite"></div>
+
+<script src="/static/script.js"></script>
+</body>
+</html>
